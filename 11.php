@@ -5,8 +5,16 @@ $minSpeed = 1;
 $maxSpeed = 3;
 $time = 1;
 
+$betFirstPlace = 4;
+$betSecondPlace = 3;
+$betThirdPlace = 2;
+
+
 $players = explode(' ', readline('Enter players: '));
 
+$chooseWinner = readline('Choose winner: ');
+
+$bet = (int) readline('And place a bet: ');
 
 $track = [];
 
@@ -19,6 +27,7 @@ for ($i = 0; $i < count($players); $i++) {
 $iterations = 0;
 
 $winners = [];
+
 
 while (count($winners) < count($players))
 {
@@ -58,13 +67,44 @@ while (count($winners) < count($players))
     sleep ($time);
 }
 
+$finishers = [];
+
 foreach ($winners as $i => $player) {
     $place = $i + 1;
-    echo "#{$place} - $player" . PHP_EOL;
+    echo "$place - $player";
+    echo PHP_EOL;
 
-
-
+    $finishers[] = [$place, $player];
 }
+
+if($chooseWinner === $finishers[0][1]){
+    echo "You choose Winner";
+    echo PHP_EOL;
+    echo "You win " . $bet * $betFirstPlace . "EUR";
+    echo PHP_EOL;
+}
+
+if($chooseWinner === $finishers[1][1]){
+    echo "Your player finished 2nd";
+    echo PHP_EOL;
+    echo "You win " . $bet * $betSecondPlace  . "EUR";
+    echo PHP_EOL;
+}
+
+if($chooseWinner === $finishers[2][1]){
+    echo "Your player finished 3rd";
+    echo PHP_EOL;
+    echo "You win " . $bet * $betThirdPlace   . "EUR";
+    echo PHP_EOL;
+}
+
+echo "Better luck next time!";
+
+
+
+
+
+
 
 
 
